@@ -15,10 +15,7 @@ fn main() {
     println!("Search for {}", config.query);
     println!("In file {}", config.filename);
 
-    let mut f = File::open(config.filename).expect("ファイルが見つかりませんでした");
-    let mut contents = String::new();
-    f.read_to_string(&mut contents).expect("ファイルの読み込み中に問題が発生しました");
-    println!("テキストは{}", contents);
+    run(config);
 }
 
 struct Config {
@@ -36,4 +33,11 @@ impl Config {
 
         Ok(Config { query, filename })
     }
+}
+
+fn run(config: Config) {
+    let mut f = File::open(config.filename).expect("ファイルが見つかりませんでした");
+    let mut contents = String::new();
+    f.read_to_string(&mut contents).expect("ファイルの読み込み中に問題が発生しました");
+    println!("テキストは{}", contents);
 }
